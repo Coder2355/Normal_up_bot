@@ -242,25 +242,15 @@ def extract_episode_number(filename):
 filename = "Naruto Shippuden S01 - EP07 - 1080p [Dual Audio] @Madflix_Bots.mkv"
 episode_number = extract_episode_number(filename)
 print(f"Extracted Episode Number: {episode_number}")
-if custom_name =="test1"
-    TARGET_CHANNEL_ID=
-    Auto_rename="@Anime_warrior_tamil- One piece-S01 - EPepisode - quality  [Tamil]"
-    
+
 
 async def auto_rename_file(client, message):
-    global TARGET_CHANNEL_ID, custom_name, POSTER, MAIN_CHANNEL,Auto_rename
-    user_id = message.from_user.id
-    if user_id not in EPISODE_LINKS:
-        sw=await message.reply_photo(photo=POSTER,
-                                 chat_id=MAIN_CHANNEL,
-                                 caption=caption)
-        EPISODE_LINKS[user_id]=sw.chat.id
-
-        
+    global TARGET_CHANNEL_ID, custom_name, POSTER
+    user_id = message.from_user.id        
     
     firstname = message.from_user.first_name
     
-    format_template = Auto_rename
+    format_template = await madflixbotz.get_format_template(user_id)
     media_preference = await madflixbotz.get_media_preference(user_id)
 
     if not format_template:
@@ -429,7 +419,7 @@ async def auto_rename_file(client, message):
                             message_id=EPISODE_MESSAGES[episode_number],
                             media=InputMediaPhoto(
                                 POSTER,
-                                caption=f"Anime: {custom_name}\nSeason: 01\nEpisode: {episode_number}\nQuality: {'| '.join(EPISODE_LINKS[episode_number].keys())}\nLanguage: Tamil \n\n Upload by: 👉@Anime_warrior_Tamil",
+                                caption=f"<pre>Anime: {custom_name}</pre>\nSeason: 01\nEpisode: {episode_number}\nQuality: {'| '.join(EPISODE_LINKS[episode_number].keys())}\nLanguage: Tamil",
                             ),
                             reply_markup=InlineKeyboardMarkup([buttons]),
                         )
@@ -441,7 +431,7 @@ async def auto_rename_file(client, message):
                     sent_message = await client.send_photo(
                         TARGET_CHANNEL_ID,
                         photo=POSTER,
-                        caption=f"Anime: {custom_name}\nSeason: 01\nEpisode: {episode_number}\nQuality: {'| '.join(EPISODE_LINKS[episode_number].keys())}\nLanguage: Tamil \n\n Upload by: 👉@Anime_warrior_Tamil",
+                        caption=f"Anime: {custom_name}\nSeason: 01\nEpisode: {episode_number}\nQuality: {'| '.join(EPISODE_LINKS[episode_number].keys())}\nLanguage: Tamil",
                         reply_markup=InlineKeyboardMarkup([buttons]),
                     )
                     EPISODE_MESSAGES[episode_number] = sent_message.id
