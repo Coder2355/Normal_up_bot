@@ -288,6 +288,11 @@ async def auto_rename_file(client, message):
 
     # Extract episode number and qualities
     episode_number = extract_episode_number(file_name)
+
+    if user_id not in EPISODE_LINKS:
+        
+        awt=await client.send_message(chat_id=TARGET_CHANNEL_ID, text=f"Episode {episode_number}")
+        EPISODE_LINKS[user_id]=awt.chat.id
     
     print(f"Extracted Episode Number: {episode_number}")
     
@@ -443,6 +448,7 @@ async def auto_rename_file(client, message):
         # Delete episode details from both dictionaries
                 del EPISODE_LINKS[episode_number]
                 del EPISODE_MESSAGES[episode_number]
+                del EPISODE_LINKS[user_id]
                 await message.reply_text(f"All qualities uploaded for Episode {episode_number}. Data cleared from memory ✅")
            
 
