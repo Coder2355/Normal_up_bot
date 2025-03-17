@@ -424,7 +424,7 @@ async def auto_rename_file(client, message):
                             message_id=EPISODE_MESSAGES[episode_number],
                             media=InputMediaPhoto(
                                 POSTER,
-                                caption=f"<pre>Anime: {custom_name}</pre>\n<pre>Season: 01\nEpisode: {episode_number}</pre>\n<pre>Quality: {'| '.join(EPISODE_LINKS[episode_number].keys())}\nLanguage: Tamil</pre>",
+                                caption=f"<pre>Anime: {custom_name}</pre>\n<pre>Season: 03\nEpisode: {episode_number}</pre>\n<pre>Quality: {'| '.join(EPISODE_LINKS[episode_number].keys())}\nLanguage: Tamil</pre>",
                             ),
                             reply_markup=InlineKeyboardMarkup([buttons]),
                         )
@@ -436,7 +436,7 @@ async def auto_rename_file(client, message):
                     sent_message = await client.send_photo(
                         TARGET_CHANNEL_ID,
                         photo=POSTER,
-                        caption=f"Anime: {custom_name}\nSeason: 01\nEpisode: {episode_number}\nQuality: {'| '.join(EPISODE_LINKS[episode_number].keys())}\nLanguage: Tamil",
+                        caption=f"Anime: {custom_name}\nSeason: 03\nEpisode: {episode_number}\nQuality: {'| '.join(EPISODE_LINKS[episode_number].keys())}\nLanguage: Tamil",
                         reply_markup=InlineKeyboardMarkup([buttons]),
                     )
                     EPISODE_MESSAGES[episode_number] = sent_message.id
